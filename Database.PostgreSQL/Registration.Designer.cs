@@ -33,7 +33,7 @@
             this.password = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.reg = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.log = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -90,15 +90,14 @@
             this.reg.TabIndex = 6;
             this.reg.Text = "Регистрация";
             // 
-            // textBox1
+            // log
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(63, 182);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(267, 43);
-            this.textBox1.TabIndex = 11;
+            this.log.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.log.Location = new System.Drawing.Point(63, 182);
+            this.log.Multiline = true;
+            this.log.Name = "log";
+            this.log.Size = new System.Drawing.Size(267, 43);
+            this.log.TabIndex = 11;
             // 
             // button2
             // 
@@ -117,7 +116,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(407, 604);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.log);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.password);
@@ -137,7 +136,7 @@
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label reg;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox log;
         private System.Windows.Forms.Button button2;
     }
 }
