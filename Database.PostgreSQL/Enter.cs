@@ -11,42 +11,52 @@ using System.Windows.Forms;
 
 namespace Database.PostgreSQL
 {
-    public partial class Registration : Form
+    public partial class Enter : Form
     {
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public Registration()
+
+        public Enter()
         {
             InitializeComponent();
-
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(this.log.Text) || string.IsNullOrEmpty(this.password.Text))
-               return;
+            if (string.IsNullOrEmpty(this.log.Text) || string.IsNullOrEmpty(this.password.Text))
+                return;
 
             Login = this.log.Text;
             Password = this.password.Text;
-
 
             try
             {
                 DB dB = new DB();
                 dB.openConnection();
-                string insertQuery = "INSERT INTO Users (login, password) VALUES (@log, @pass)";
+                string insertQuery = $"SELECT * FROM Users WHERE login = @log AND password = @pass";
                 NpgsqlDataAdapter NpAdapter = new NpgsqlDataAdapter();
                 var cmd = NpAdapter.InsertCommand = new NpgsqlCommand(insertQuery, dB.getConnection());
                 cmd.Parameters.AddWithValue("log", Login);
                 cmd.Parameters.AddWithValue("pass", Password);
-                cmd.ExecuteNonQuery();
+                var reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    this.log.Text = default;
+                    this.password.Text = default;
+                    MessageBox.Show("Успешно");
+                    return;
+                }
+
+                MessageBox.Show("Неправилный логин или пароль");
+
+
+
                 dB.closeConnection();
 
 
-                this.log.Text = default;
-                this.password.Text = default;
-                MessageBox.Show("Успешно");
+               
             }
             catch (Exception)
             {
@@ -55,15 +65,5 @@ namespace Database.PostgreSQL
             }
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-           this.Hide();
-           Enter enter = new Enter();
-           enter.Show();
-        }
     }
 }
-
-
-   
